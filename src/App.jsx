@@ -6,6 +6,7 @@ import AudioRecorder from './components/AudioRecorder';
 import LectureViewer from './components/LectureViewer';
 import SettingsModal from './components/SettingsModal';
 import AuthView from './components/AuthView';
+import BottomNav from './components/BottomNav';
 import { getLectures, saveLectures, addLecture, deleteLecture, getSettings, saveSettings } from './utils/db';
 import { generateAIContent, transcribeYouTubeWithGemini } from './utils/ai';
 import { auth } from './utils/firebase';
@@ -272,6 +273,15 @@ export default function App() {
           )}
         </main>
       </div>
+
+      <BottomNav 
+        activeTab={activeTab} 
+        setActiveTab={(tab) => {
+          setActiveTab(tab);
+          setSelectedLecture(null);
+        }} 
+        onOpenSettings={() => setIsSettingsOpen(true)} 
+      />
 
       <SettingsModal 
         isOpen={isSettingsOpen} 
