@@ -950,3 +950,195 @@ input:checked + .slider:before {
   border-radius: 8px;
   margin-bottom: 1rem;
 }
+
+/* Mobile & Responsive Utilities */
+.mobile-menu-toggle {
+  display: none;
+}
+
+.mobile-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  transition: var(--transition-smooth);
+}
+
+.mobile-close-btn:hover {
+  color: var(--text-primary);
+  background: var(--border-color);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 99;
+  animation: fadeIn 0.2s ease;
+}
+
+.transcript-split-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+}
+
+.transcript-split-layout.has-media {
+  grid-template-columns: 480px 1fr;
+}
+
+@media (max-width: 1024px) {
+  .transcript-split-layout.has-media {
+    grid-template-columns: 380px 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .transcript-split-layout.has-media {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex !important;
+  }
+
+  .mobile-close-btn {
+    display: flex !important;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-premium);
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .header {
+    padding: 0 1rem;
+  }
+
+  .header-search {
+    width: 100%;
+  }
+
+  .scroll-area {
+    padding: 1rem;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .welcome-title {
+    font-size: 1.65rem;
+  }
+
+  .viewer-header {
+    padding: 1rem;
+  }
+
+  .viewer-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    width: 100%;
+  }
+
+  .viewer-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .viewer-body {
+    padding: 1rem;
+  }
+
+  .modal-content {
+    width: 90vw;
+    max-width: 500px;
+    padding: 1.5rem;
+  }
+
+  .flashcard-scene {
+    width: 100%;
+    max-width: 450px;
+    height: 240px;
+  }
+
+  .quiz-container {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .lecture-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .lecture-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .lecture-actions .btn-secondary {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .viewer-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .audio-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+  }
+
+  .message-bubble {
+    max-width: 88%;
+  }
+
+  .chat-input-area {
+    padding: 0.75rem;
+  }
+
+  .welcome-section {
+    margin-bottom: 1.25rem;
+  }
+}
+

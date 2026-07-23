@@ -1,8 +1,8 @@
 import React from 'react';
-import { LayoutDashboard, Mic, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Mic, Settings, LogOut, X } from 'lucide-react';
 import { logout } from '../utils/firebase';
 
-export default function Sidebar({ activeTab, setActiveTab, lectures, onOpenSettings, user }) {
+export default function Sidebar({ activeTab, setActiveTab, lectures, onOpenSettings, user, isOpen, onClose }) {
   const [imageError, setImageError] = React.useState(false);
   // Count total deadlines
   const totalDeadlines = lectures.reduce((sum, lec) => sum + (lec.deadlines ? lec.deadlines.length : 0), 0);
@@ -11,21 +11,33 @@ export default function Sidebar({ activeTab, setActiveTab, lectures, onOpenSetti
   }, 0);
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'mobile-open' : ''}`}>
       <div>
-        <div className="logo-container">
-          <img 
-            src="/logo.png" 
-            alt="LectureMind Logo" 
-            style={{ 
-              width: '40px', 
-              height: '40px', 
-              borderRadius: '12px', 
-              objectFit: 'cover',
-              boxShadow: '0 4px 12px var(--accent-glow)' 
-            }} 
-          />
-          <span className="logo-text">LectureMind AI</span>
+        <div className="logo-container" style={{ justifyContent: 'space-between', width: '100%' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <img 
+              src="/logo.png" 
+              alt="LectureMind Logo" 
+              style={{ 
+                width: '40px', 
+                height: '40px', 
+                borderRadius: '12px', 
+                objectFit: 'cover',
+                boxShadow: '0 4px 12px var(--accent-glow)' 
+              }} 
+            />
+            <span className="logo-text">LectureMind AI</span>
+          </div>
+          {onClose && (
+            <button 
+              className="mobile-close-btn"
+              onClick={onClose}
+              title="Close Menu"
+              aria-label="Close Menu"
+            >
+              <X size={20} />
+            </button>
+          )}
         </div>
 
         <nav>

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Sun, Moon, User, LogOut } from 'lucide-react';
+import { Search, Sun, Moon, User, LogOut, Menu } from 'lucide-react';
 import { logout } from '../utils/firebase';
 
-export default function Header({ searchQuery, setSearchQuery, theme, toggleTheme, user }) {
+export default function Header({ searchQuery, setSearchQuery, theme, toggleTheme, user, onToggleMobileMenu }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
   const dropdownRef = useRef(null);
@@ -20,14 +20,27 @@ export default function Header({ searchQuery, setSearchQuery, theme, toggleTheme
 
   return (
     <header className="header" style={{ position: 'relative' }}>
-      <div className="header-search">
-        <Search size={18} className="text-muted" />
-        <input 
-          type="text" 
-          placeholder="Search lectures, transcripts, notes..." 
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flex: 1, minWidth: 0 }}>
+        {onToggleMobileMenu && (
+          <button 
+            className="mobile-menu-toggle btn-icon"
+            onClick={onToggleMobileMenu}
+            title="Open Menu"
+            aria-label="Open Menu"
+          >
+            <Menu size={22} />
+          </button>
+        )}
+
+        <div className="header-search">
+          <Search size={18} className="text-muted" />
+          <input 
+            type="text" 
+            placeholder="Search lectures, transcripts, notes..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
       </div>
 
       <div className="header-actions" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>

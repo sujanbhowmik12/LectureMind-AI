@@ -114,14 +114,7 @@ export default function TranscriptView({
       )}
 
       <div 
-        style={{ 
-          display: 'grid', 
-          gridTemplateColumns: (mediaType === 'video' || mediaType === 'audio' || mediaType === 'web') && mediaUrl ? '480px 1fr' : '1fr', 
-          gap: '1.5rem', 
-          overflow: 'hidden',
-          flex: 1,
-          minHeight: '0'
-        }}
+        className={`transcript-split-layout ${((mediaType === 'video' || mediaType === 'audio' || mediaType === 'web') && mediaUrl) ? 'has-media' : ''}`}
       >
         {mediaType === 'audio' && mediaUrl && mediaUrl.startsWith('http') && (
           <div 

@@ -19,6 +19,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [theme, setTheme] = useState('dark');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [lectureToDelete, setLectureToDelete] = useState(null);
@@ -213,15 +214,29 @@ export default function App() {
 
   return (
     <div className="app-container">
+      {/* Mobile Drawer Overlay Backdrop */}
+      {isMobileMenuOpen && (
+        <div 
+          className="sidebar-overlay" 
+          onClick={() => setIsMobileMenuOpen(false)} 
+        />
+      )}
+
       <Sidebar 
         activeTab={activeTab} 
         setActiveTab={(tab) => {
           setActiveTab(tab);
           setSelectedLecture(null); // Clear selected lecture when navigating
+          setIsMobileMenuOpen(false); // Close mobile drawer on navigation
         }}
         lectures={lectures}
-        onOpenSettings={() => setIsSettingsOpen(true)}
+        onOpenSettings={() => {
+          setIsSettingsOpen(true);
+          setIsMobileMenuOpen(false);
+        }}
         user={user}
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
       />
 
       <div className="main-content">
@@ -231,6 +246,7 @@ export default function App() {
           theme={theme}
           toggleTheme={handleToggleTheme}
           user={user}
+          onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         />
 
         <main className="scroll-area">
