@@ -46,22 +46,22 @@ export default function AuthView() {
   };
 
   return (
-    <div style={{
+    <div className="auth-container" style={{
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: '100vh',
+      minHeight: '100dvh',
       width: '100vw',
       background: 'var(--bg-primary)',
-      padding: '2rem'
+      padding: '1.5rem 1rem'
     }}>
-      <div style={{
+      <div className="auth-card" style={{
         background: 'var(--bg-secondary)',
         backdropFilter: 'var(--glass-blur)',
         WebkitBackdropFilter: 'var(--glass-blur)',
         border: '1px solid var(--border-color)',
         borderRadius: '24px',
-        padding: '3rem 2.5rem',
         width: '100%',
         maxWidth: '460px',
         boxShadow: 'var(--shadow-premium)',
